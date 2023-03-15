@@ -1,18 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import {TaskType, Todolist} from "./ToDoList";
 
 function App() {
-  let tasks: Array<TaskType> = [
+  let initTask: Array<TaskType> = [
     {id: 1, title: "CSS", isDone: true},
     {id: 2, title: "JS", isDone: true},
     {id: 3, title: "React", isDone: false},
     {id: 4, title: "Node", isDone: false},
   ];
+  let arr = useState(initTask);
+  let tasks = arr[0];
+  let setTasks = arr[1];
 
   function removeTask(id: number) {
-    let resultTasks = tasks.filter((task) => task.id !== id);
-    console.log(resultTasks);
+    let filteredTasks = tasks.filter((task) => task.id !== id);
+    setTasks(filteredTasks);
+    console.log(filteredTasks);
   }
 
 
