@@ -9,9 +9,7 @@ function App() {
     {id: 3, title: "React", isDone: false},
     {id: 4, title: "Node", isDone: false},
   ];
-  let arr = useState(initTask);
-  let tasks = arr[0];
-  let setTasks = arr[1];
+  let [tasks,setTasks] = useState(initTask);
 
   function removeTask(id: number) {
     let filteredTasks = tasks.filter((task) => task.id !== id);
