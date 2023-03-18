@@ -24,7 +24,10 @@ export function Todolist(props: PropsType) {
         let data = object.currentTarget.value
         setNewTaskTitle(data);
       }}/>
-      <button onClick={() => props.addTask(newTaskTitle)}>+</button>
+      <button onClick={() => {
+        props.addTask(newTaskTitle);
+        setNewTaskTitle("");
+      }}>+</button>
     </div>
     <ul>
       {
