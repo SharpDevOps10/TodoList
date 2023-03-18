@@ -22,6 +22,16 @@ function App() {
     console.log(filteredTasks);
   }
 
+  function addTask() {
+    let newTask = {
+      id: v1(),
+      title: "New Task",
+      isDone: false,
+    };
+    let tasksCollection = [newTask, ...tasks];
+    setTasks(tasksCollection);
+  }
+
   function changeFilter(value: FilterValuesTypes) {
     setFilter(value);
   }
@@ -42,6 +52,7 @@ function App() {
                 tasks={taskForTodoList}
                 removeTask={removeTask}
                 changeFilter={changeFilter}
+                addTask={addTask}
       />
     </div>
   );
