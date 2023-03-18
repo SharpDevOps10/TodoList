@@ -26,7 +26,7 @@ export function Todolist(props: PropsType) {
                setNewTaskTitle(data);
              }}
              onKeyPress={(object) => {
-               if (object.charCode === 13) {
+               if (object.shiftKey && object.charCode === 13) {
                  props.addTask(newTaskTitle);
                  setNewTaskTitle("");
                }
