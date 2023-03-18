@@ -24,7 +24,7 @@ export function Todolist(props: PropsType) {
     <ul>
       {
         props.tasks.map((param) => {
-          return <li><input type="checkbox" checked={param.isDone}/>
+          return <li key = {param.id}><input type="checkbox" checked={param.isDone}/>
             <span>{param.title}</span>
             <button onClick={() => {
               props.removeTask(param.id)
