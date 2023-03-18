@@ -22,10 +22,10 @@ function App() {
     console.log(filteredTasks);
   }
 
-  function addTask() {
+  function addTask(title : string) {
     let newTask = {
       id: v1(),
-      title: "New Task",
+      title: title,
       isDone: false,
     };
     let tasksCollection = [newTask, ...tasks];
