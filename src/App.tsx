@@ -22,7 +22,7 @@ function App() {
     console.log(filteredTasks);
   }
 
-  function addTask(title : string) {
+  function addTask(title: string) {
     let newTask = {
       id: v1(),
       title: title,
