@@ -29,7 +29,7 @@ export function Todolist(props: PropsType) {
   };
   const addTask = () => {
     if (newTaskTitle.trim() === "") return;
-    props.addTask(newTaskTitle);
+    props.addTask(newTaskTitle.trim());
     setNewTaskTitle("");
   };
   const onAllClickHandler = () => props.changeFilter("all");
