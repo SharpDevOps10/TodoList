@@ -11,3 +11,6 @@
 .error-message {
   color: red;
 }
+.active-filter {
+  background-color: aquamarine;
+}
