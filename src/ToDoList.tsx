@@ -23,6 +23,7 @@ export function Todolist(props: PropsType) {
     setNewTaskTitle(data);
   };
   const onKeyPressHandler = (event: KeyboardEvent<HTMLInputElement>) => {
+    setError(null);
     if (event.shiftKey && event.charCode === 13) {
       props.addTask(newTaskTitle);
       setNewTaskTitle("");
