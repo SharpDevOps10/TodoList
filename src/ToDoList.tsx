@@ -35,6 +35,7 @@ export function Todolist(props: PropsType) {
   const onCompletedClickHandler = () => props.changeFilter("completed");
 
 
+
   return <div>
     <h3>{props.title}</h3>
     <div>
@@ -47,10 +48,13 @@ export function Todolist(props: PropsType) {
     <ul>
       {
         props.tasks.map((param) => {
-          const onRemoveHandler = () => {
-            props.removeTask(param.id);
-          };
-          return <li key={param.id}><input type="checkbox" checked={param.isDone}/>
+          const onRemoveHandler = () => props.removeTask(param.id);
+          const onChangeHandler = () => console.log(param.id + 'Want to change');
+
+          return <li key={param.id}>
+            <input type="checkbox"
+                   onChange={onChangeHandler}
+                   checked={param.isDone}/>
             <span>{param.title}</span>
             <button onClick={onRemoveHandler}>x</button>
           </li>
