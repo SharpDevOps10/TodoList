@@ -17,6 +17,7 @@ type PropsType = {
 
 export function Todolist(props: PropsType) {
   const [newTaskTitle, setNewTaskTitle] = useState("");
+  const [error, setError] = useState<string|null>(null);
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     let data = event.currentTarget.value
     setNewTaskTitle(data);
@@ -28,9 +29,13 @@ export function Todolist(props: PropsType) {
     }
   };
   const addTask = () => {
-    if (newTaskTitle.trim() === "") return;
-    props.addTask(newTaskTitle.trim());
-    setNewTaskTitle("");
+    if (newTaskTitle.trim() !== "") {
+      props.addTask(newTaskTitle.trim());
+      setNewTaskTitle("");
+    } else {
+      setError("Title is required");
+    }
+
   };
   const onAllClickHandler = () => props.changeFilter("all");
   const onActiveClickHandler = () => props.changeFilter("active");
@@ -43,8 +48,10 @@ export function Todolist(props: PropsType) {
       <input value={newTaskTitle}
              onChange={onChangeHandler}
              onKeyPress={onKeyPressHandler}
+             className={error ? "error" : ""}
       />
       <button onClick={addTask}>+</button>
+      {error && <div className="error-message">{error}</div>}
     </div>
     <ul>
       {
