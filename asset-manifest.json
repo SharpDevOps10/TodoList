@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/sharpdevops10.github.io/TodoList/static/css/main.c04fd316.css",
-    "main.js": "/sharpdevops10.github.io/TodoList/static/js/main.5623ab70.js",
-    "static/js/787.cf94f539.chunk.js": "/sharpdevops10.github.io/TodoList/static/js/787.cf94f539.chunk.js",
-    "index.html": "/sharpdevops10.github.io/TodoList/index.html",
-    "main.c04fd316.css.map": "/sharpdevops10.github.io/TodoList/static/css/main.c04fd316.css.map",
-    "main.5623ab70.js.map": "/sharpdevops10.github.io/TodoList/static/js/main.5623ab70.js.map",
-    "787.cf94f539.chunk.js.map": "/sharpdevops10.github.io/TodoList/static/js/787.cf94f539.chunk.js.map"
+    "main.css": "/TodoList/static/css/main.c04fd316.css",
+    "main.js": "/TodoList/static/js/main.155b044f.js",
+    "static/js/787.cf94f539.chunk.js": "/TodoList/static/js/787.cf94f539.chunk.js",
+    "index.html": "/TodoList/index.html",
+    "main.c04fd316.css.map": "/TodoList/static/css/main.c04fd316.css.map",
+    "main.155b044f.js.map": "/TodoList/static/js/main.155b044f.js.map",
+    "787.cf94f539.chunk.js.map": "/TodoList/static/js/787.cf94f539.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c04fd316.css",
-    "static/js/main.5623ab70.js"
+    "static/js/main.155b044f.js"
   ]
 }
