@@ -1,4 +1,5 @@
-const mainElement = document.querySelector('.main');
+const notesEl = document.querySelector('.notes');
+const addBtn = document.querySelector('.note-add');
 const createNote = (title, text) => {
   const noteEl = document.createElement('div');
   noteEl.classList.add('note');
@@ -10,7 +11,11 @@ const createNote = (title, text) => {
         <button class="note-delete"><i class="fa-solid fa-trash"></i></button>
       </div>
     </div>
-    <p id="note-description">${text}</p>
+    <p>${text}</p>
   `;
-
+  return noteEl;
 };
+addBtn.addEventListener('click', (e) => {
+  const element = createNote("Header", "Your text");
+  notesEl.appendChild(element);
+});
