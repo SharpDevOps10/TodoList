@@ -8,8 +8,9 @@ const createNote = (title, text) => {
       <div class="note-actions"> 
         <button class="note-edit"><i class="fa-solid fa-pen-to-square"></i></button>
         <button class="note-delete"><i class="fa-solid fa-trash"></i></button>
-      <div/>
-    <div/>
+      </div>
+    </div>
+    <p id="note-description">${text}</p>
   `;
 
 };
