@@ -22,7 +22,7 @@ const createNote = (title, text) => {
   const titleInputEl = noteEl.querySelector('#note-title-input');
   const textInputEl = noteEl.querySelector('#note-textarea');
 
-  editBtn.addEventListener('click', (e) => {
+  editBtn.addEventListener('click', () => {
     titleEl.classList.toggle('hidden');
     textEl.classList.toggle('hidden');
 
@@ -30,7 +30,7 @@ const createNote = (title, text) => {
     textInputEl.classList.toggle('hidden');
   });
 
-  deleteBtn.addEventListener('click', (e) => {
+  deleteBtn.addEventListener('click', () => {
     noteEl.remove();
   });
   titleInputEl.addEventListener('input', (e) => {
@@ -43,7 +43,7 @@ const createNote = (title, text) => {
 
   return noteEl;
 };
-addBtn.addEventListener('click', (e) => {
+addBtn.addEventListener('click', () => {
   const element = createNote("Header", "Your text");
   notesEl.appendChild(element);
 });
