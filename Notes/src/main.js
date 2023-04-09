@@ -1,3 +1,4 @@
+'use strict';
 const notesEl = document.querySelector(".notes");
 const addBtn = document.querySelector(".note-add");
 const createNote = (title, text) => {
