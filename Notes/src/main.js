@@ -13,6 +13,15 @@ const createNote = (title, text) => {
     </div>
     <p>${text}</p>
   `;
+  const editBtn = noteEl.querySelector('.note-edit');
+  const deleteBtn = noteEl.querySelector('.note-delete');
+  editBtn.addEventListener('click', (e) => {
+
+  });
+  deleteBtn.addEventListener('click', (e) => {
+    noteEl.remove();
+  });
+
   return noteEl;
 };
 addBtn.addEventListener('click', (e) => {
