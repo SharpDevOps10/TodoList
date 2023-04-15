@@ -27,13 +27,13 @@ export function Todolist(props: PropsType) {
   const onKeyPressHandler = (event: KeyboardEvent<HTMLInputElement>) => {
     setError(null);
     if (event.shiftKey && event.charCode === 13) {
-      props.addTask(newTaskTitle);
+      props.addTask(newTaskTitle, props.id);
       setNewTaskTitle("");
     }
   };
   const addTask = () => {
     if (newTaskTitle.trim() !== "") {
-      props.addTask(newTaskTitle.trim());
+      props.addTask(newTaskTitle.trim(), props.id);
       setNewTaskTitle("");
     } else {
       setError("Title is required");
@@ -59,9 +59,9 @@ export function Todolist(props: PropsType) {
     <ul>
       {
         props.tasks.map((param) => {
-          const onRemoveHandler = () => props.removeTask(param.id);
+          const onRemoveHandler = () => props.removeTask(param.id, props.id);
           const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-            props.changeTaskStatus(param.id, e.currentTarget.checked);
+            props.changeTaskStatus(param.id, e.currentTarget.checked, props.id);
           };
 
           return <li key={param.id} className={ param.isDone ? "is-done" : ""}>
