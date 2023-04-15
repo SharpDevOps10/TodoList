@@ -16,7 +16,7 @@ function App() {
     let tasks = tasksObj[todoListId];
     let filteredTasks = tasks.filter((task) => task.id !== id);
     tasksObj[todoListId] = filteredTasks;
-    setTasksObj({...tasksObj});
+    setTasks({...tasksObj});
   }
 
   function addTask(title: string, todoListId: string) {
@@ -28,7 +28,7 @@ function App() {
     let tasks = tasksObj[todoListId];
     let newTasks = [task,...tasks];
     tasksObj[todoListId] = newTasks;
-    setTasksObj({...tasksObj});
+    setTasks({...tasksObj});
   }
 
   function changeFilter(value: FilterValuesTypes, todoListId: string) {
@@ -44,7 +44,7 @@ function App() {
     let task = tasks.find((t) => t.id === taskID);
     if (task) {
       task.isDone = isDone;
-      setTasksObj({...tasksObj});
+      setTasks({...tasksObj});
     }
   }
 
@@ -55,7 +55,14 @@ function App() {
     {id: todoListId1, title: "What to learn", filter: "active"},
     {id: todoListId2, title: "What to buy", filter: "completed"},
   ]);
-  let [tasksObj, setTasksObj] = useState({
+  const removeTodoList = (todoListId: string) => {
+    let filteredTodoList = todoLists.filter((tl) => tl.id !== todoListId);
+    setTodoLists(filteredTodoList);
+    delete tasksObj[todoListId];
+    setTasks({...tasksObj});
+  };
+
+  let [tasksObj, setTasks] = useState({
     [todoListId1]: [
       {id: v1(), title: "CSS", isDone: true},
       {id: v1(), title: "JS", isDone: true},
@@ -91,6 +98,7 @@ function App() {
             addTask={addTask}
             changeTaskStatus={changeStatus}
             filter={tl.filter}
+            removeTodoList={removeTodoList}
           />
         })
       }
