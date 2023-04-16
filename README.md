@@ -1,5 +1,5 @@
 # To do List
-This is a simple 'task manager' where you can write you goals 
+This is a simple 'task manager' where you can write your goals 
 # What about opportunities? 
  * You can add your task, clicking the button `+`
     * What is more, you can add your task using the combination of buttons `Shift+Enter` as well
