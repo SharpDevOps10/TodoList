@@ -20,7 +20,7 @@ type PropsType = {
 
 export function Todolist(props: PropsType) {
   const [newTaskTitle, setNewTaskTitle] = useState("");
-  const [error, setError] = useState<string|null>(null);
+  const [error, setError] = useState<string | null>(null);
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     let data = event.currentTarget.value
     setNewTaskTitle(data);
@@ -50,7 +50,9 @@ export function Todolist(props: PropsType) {
 
 
   return <div>
-    <h3>{props.title} <button onClick={removeTodoListHandler}>x</button></h3>
+    <h3>{props.title}
+      <button onClick={removeTodoListHandler}>x</button>
+    </h3>
     <div>
       <input value={newTaskTitle}
              onChange={onChangeHandler}
@@ -68,7 +70,7 @@ export function Todolist(props: PropsType) {
             props.changeTaskStatus(param.id, e.currentTarget.checked, props.id);
           };
 
-          return <li key={param.id} className={ param.isDone ? "is-done" : ""}>
+          return <li key={param.id} className={param.isDone ? "is-done" : ""}>
             <input type="checkbox"
                    onChange={onChangeHandler}
                    checked={param.isDone}/>
@@ -80,12 +82,57 @@ export function Todolist(props: PropsType) {
     </ul>
     <div>
       <button className={props.filter === 'all' ? "active-filter" : ""}
-              onClick={onAllClickHandler}>All</button>
+              onClick={onAllClickHandler}>All
+      </button>
       <button className={props.filter === 'active' ? "active-filter" : ""}
-          onClick={onActiveClickHandler}>Active</button>
+              onClick={onActiveClickHandler}>Active
+      </button>
       <button className={props.filter === 'completed' ? "active-filter" : ""}
-          onClick={onCompletedClickHandler}>Completed</button>
+              onClick={onCompletedClickHandler}>Completed
+      </button>
     </div>
   </div>
 
+}
+
+type AddItemFormPropsType = {
+  addTask: (title: string, todolistId: string) => void,
+  id: string,
+
+};
+
+function AddItemForm(props: AddItemFormPropsType) {
+  const [newTaskTitle, setNewTaskTitle] = useState("");
+  const [error, setError] = useState<string | null>(null);
+
+  const addTask = () => {
+    if (newTaskTitle.trim() !== "") {
+      props.addTask(newTaskTitle.trim(), props.id);
+      setNewTaskTitle("");
+    } else {
+      setError("Title is required");
+    }
+
+  };
+
+  const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    let data = event.currentTarget.value
+    setNewTaskTitle(data);
+  };
+  const onKeyPressHandler = (event: KeyboardEvent<HTMLInputElement>) => {
+    setError(null);
+    if (event.shiftKey && event.charCode === 13) {
+      props.addTask(newTaskTitle, props.id);
+      setNewTaskTitle("");
+    }
+  };
+  return <div>
+    <input value={newTaskTitle}
+           onChange={onChangeHandler}
+           onKeyPress={onKeyPressHandler}
+           className={error ? "error" : ""}
+    />
+    <button onClick={addTask}>+</button>
+    {error && <div className="error-message">{error}</div>}
+  </div>
 }
