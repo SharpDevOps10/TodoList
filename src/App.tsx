@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import {Todolist} from "./ToDoList";
 import {v1} from 'uuid';
+import {AddItemForm} from "./AddItemForm";
 
 export type FilterValuesTypes = "all" | "completed" | "active";
 type TodoListType = {
@@ -77,6 +78,7 @@ function App() {
 
   return (
     <div className="App">
+      <AddItemForm addItem={() => {}} id={'www'}/>
       {
 
         todoLists.map((tl) => {
