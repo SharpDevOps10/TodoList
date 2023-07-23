@@ -65,7 +65,7 @@ export function Todolist(props: PropsType) {
                    onChange={onChangeStatusHandler}
                    checked={param.isDone}/>
             <EditableSpan title={param.title} onChange={onChangeTitleHandler}/>
-            <IconButton onClick={removeTodoListHandler}>
+            <IconButton onClick={onRemoveHandler}>
               <Delete />
             </IconButton>
           </li>
