@@ -2,7 +2,7 @@ import React, {ChangeEvent} from "react";
 import {FilterValuesTypes} from "./App";
 import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
-import {Button, IconButton} from "@material-ui/core";
+import {Button, Checkbox, IconButton} from "@material-ui/core";
 import {Delete} from "@material-ui/icons";
 
 export type TaskType = {
@@ -44,7 +44,7 @@ export function Todolist(props: PropsType) {
   return <div>
     <h3><EditableSpan title={props.title} onChange={changeTodoListTitle}></EditableSpan>
       <IconButton onClick={removeTodoListHandler}>
-        <Delete />
+        <Delete/>
       </IconButton>
     </h3>
     <AddItemForm addItem={addTask}></AddItemForm>
@@ -61,12 +61,12 @@ export function Todolist(props: PropsType) {
           };
 
           return <li key={param.id} className={param.isDone ? "is-done" : ""}>
-            <input type="checkbox"
-                   onChange={onChangeStatusHandler}
-                   checked={param.isDone}/>
+            <Checkbox
+              onChange={onChangeStatusHandler}
+              checked={param.isDone}/>
             <EditableSpan title={param.title} onChange={onChangeTitleHandler}/>
             <IconButton onClick={onRemoveHandler}>
-              <Delete />
+              <Delete/>
             </IconButton>
           </li>
         })
