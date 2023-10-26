@@ -9,7 +9,7 @@ type ActionType = {
   [key: string]: any,
 };
 
-export const userReducer = (state: StateType, action: ActionType) => {
+export const userReducer = (state: StateType, action: ActionType): StateType => {
   const actionHandlers: { [key: string]: () => StateType } = {
     'INC AGE': () => {
       return { ...state, age: state.age + 1 };
@@ -20,9 +20,6 @@ export const userReducer = (state: StateType, action: ActionType) => {
   };
 
   const handler = actionHandlers[action.type];
-  if (handler) {
-    return handler();
-  } else {
-    throw new Error('No matching action type');
-  }
+  if (handler) return handler();
+  else throw new Error('No matching action type');
 };
