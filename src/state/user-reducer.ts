@@ -10,16 +10,19 @@ type ActionType = {
 };
 
 export const userReducer = (state: StateType, action: ActionType) => {
-  switch (action.type) {
-    case 'INC AGE':
-      state.age = state.age + 1;
-      return state;
-    case 'INC CHILDREN COUNT':
-      state.childrenCount = state.childrenCount + 1;
-      return state;
-    default:
-      throw new Error('No matching action type');
+  const actionHandlers: { [key: string]: () => StateType } = {
+    'INC AGE': () => {
+      return { ...state, age: state.age + 1 };
+    },
+    'INC CHILDREN COUNT': () => {
+      return { ...state, childrenCount: state.childrenCount + 1 };
+    },
+  };
+
+  const handler = actionHandlers[action.type];
+  if (handler) {
+    return handler();
+  } else {
+    throw new Error('No matching action type');
   }
-
-
 };
