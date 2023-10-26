@@ -17,6 +17,9 @@ export const userReducer = (state: StateType, action: ActionType): StateType => 
     'INC CHILDREN COUNT': () => {
       return { ...state, childrenCount: state.childrenCount + 1 };
     },
+    'CHANGE NAME': () => {
+      return {...state, name: action.newName};
+    },
   };
 
   const handler = actionHandlers[action.type];
