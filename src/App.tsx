@@ -7,7 +7,7 @@ import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography}
 import {Menu} from "@material-ui/icons";
 
 export type FilterValuesTypes = "all" | "completed" | "active";
-type TodoListType = {
+export type TodoListType = {
   id: string,
   title: string,
   filter: FilterValuesTypes,
