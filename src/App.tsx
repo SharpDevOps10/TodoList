@@ -1,19 +1,19 @@
 import React, {useState} from 'react';
 import './App.css';
-import {TaskType, Todolist} from "./ToDoList";
+import {TaskType, Todolist} from './ToDoList';
 import {v1} from 'uuid';
-import {AddItemForm} from "./AddItemForm";
-import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from "@material-ui/core";
-import {Menu} from "@material-ui/icons";
+import {AddItemForm} from './AddItemForm';
+import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from '@material-ui/core';
+import {Menu} from '@material-ui/icons';
 
-export type FilterValuesTypes = "all" | "completed" | "active";
+export type FilterValuesTypes = 'all' | 'completed' | 'active';
 export type TodoListType = {
   id: string,
   title: string,
   filter: FilterValuesTypes,
 };
 
-type TasksState = {
+export type TasksState = {
   [key: string]: Array<TaskType>
 };
 
