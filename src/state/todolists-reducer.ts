@@ -66,18 +66,18 @@ export const todolistReducer = (state: Array<TodoListType>, action: ActionsType)
   else throw new Error('No matching action type');
 };
 
-export const RemoveTodolistAC = (todolistId: string): RemoveTodolistActionType => {
+export const removeTodolistAC = (todolistId: string): RemoveTodolistActionType => {
   return { type: 'REMOVE TODOLIST', id: todolistId };
 };
 
-export const AddTodolistAC = (title: string): AddTodolistActionType => {
+export const addTodolistAC = (title: string): AddTodolistActionType => {
   return { type: 'ADD TODOLIST', title: title };
 };
 
-export const ChangeTodolistTitleAC = (todolistId: string, title: string): ChangeTodolistTitleActionType => {
+export const changeTodolistTitleAC = (todolistId: string, title: string): ChangeTodolistTitleActionType => {
   return { type: 'CHANGE TODOLIST TITLE', id: todolistId, title: title };
 };
 
-export const ChangeTodolistFilterAC = (todolistId: string, filter: FilterValuesTypes): ChangeTodolistFilterActionType => {
+export const changeTodolistFilterAC = (todolistId: string, filter: FilterValuesTypes): ChangeTodolistFilterActionType => {
   return { type: 'CHANGE TODOLIST FILTER', id: todolistId, filter: filter };
 };
