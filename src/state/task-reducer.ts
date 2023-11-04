@@ -25,20 +25,24 @@ type ActionsType = RemoveTaskActionType | AddTaskActionType | ChangeTaskStatusTy
 export const taskReducer = (state: TasksState, action: ActionsType): TasksState => {
   switch (action.type) {
     case 'REMOVE TASK' : {
-      const stateCopy = {...state};
+      const stateCopy = { ...state };
       const tasks = state[action.todolistId];
       stateCopy[action.todolistId] = tasks.filter((task) => task.id !== action.taskId);
       return stateCopy;
     }
     case 'ADD TASK': {
-      const stateCopy = {...state};
+      const stateCopy = { ...state };
       const tasks = state[action.todolistId];
       const newTask = { id: v1(), title: action.title, isDone: false };
       stateCopy[action.todolistId] = [newTask, ...tasks];
       return stateCopy;
     }
     case 'CHANGE TASK STATUS': {
-      const stateCopy = {...state};
+      const stateCopy = { ...state };
+      const tasks = stateCopy[action.todolistId];
+      stateCopy[action.todolistId] = tasks.map((task) =>
+        task.id === action.taskId ? { ...task, isDone: action.isDone } : task
+      );
       return stateCopy;
     }
   }
