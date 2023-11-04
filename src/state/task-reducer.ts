@@ -1,5 +1,5 @@
-import {TasksState} from '../App';
-import {v1} from 'uuid';
+import { TasksState } from '../App';
+import { v1 } from 'uuid';
 
 type RemoveTaskActionType = {
   type: 'REMOVE TASK';
@@ -13,7 +13,14 @@ type AddTaskActionType = {
   todolistId: string;
 };
 
-type ActionsType = RemoveTaskActionType | AddTaskActionType;
+type ChangeTaskStatusType = {
+  type: 'CHANGE TASK STATUS';
+  isDone: boolean;
+  taskId: string;
+  todolistId: string;
+};
+
+type ActionsType = RemoveTaskActionType | AddTaskActionType | ChangeTaskStatusType;
 
 export const taskReducer = (state: TasksState, action: ActionsType): TasksState => {
   switch (action.type) {
@@ -30,6 +37,10 @@ export const taskReducer = (state: TasksState, action: ActionsType): TasksState 
       stateCopy[action.todolistId] = [newTask, ...tasks];
       return stateCopy;
     }
+    case 'CHANGE TASK STATUS': {
+      const stateCopy = {...state};
+      return stateCopy;
+    }
   }
 };
 
@@ -39,4 +50,8 @@ export const removeTaskAC = (taskId: string, todolistId: string): RemoveTaskActi
 
 export const addTaskAC = (title: string, todolistId: string): AddTaskActionType => {
   return { type: 'ADD TASK', title, todolistId };
+};
+
+export const changeTaskStatusAC = (taskId: string, isDone: boolean, todolistId: string): ChangeTaskStatusType => {
+  return { type: 'CHANGE TASK STATUS', isDone, taskId, todolistId };
 };
