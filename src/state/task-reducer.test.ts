@@ -1,5 +1,5 @@
 import { TasksState } from '../App';
-import {addTaskAC, removeTaskAC, taskReducer} from './task-reducer';
+import {addTaskAC, changeTaskStatusAC, removeTaskAC, taskReducer} from './task-reducer';
 
 test('correct task should be deleted from correct array', () => {
   const startState: TasksState = {
@@ -45,5 +45,24 @@ test('correct task should be added to correct array', () => {
   expect(endState['todolist2Id'][0].isDone).toBe(false);
 });
 
+test('status of particular task should be changed', () => {
+  const startState: TasksState = {
+    'todolist1Id': [
+      { id: '1', title: 'CSS', isDone: true },
+      { id: '2', title: 'JS', isDone: true },
+      { id: '3', title: 'React', isDone: false },
+    ],
+    'todolist2Id': [
+      { id: '1', title: 'The Sorrows Of Werther', isDone: false },
+      { id: '2', title: 'Milk', isDone: true },
+    ],
+  };
+
+  const action = changeTaskStatusAC('2', false, 'todolist2Id');
+  const endState = taskReducer(startState, action);
+
+  expect(endState['todolist1Id'][1].isDone).toBeTruthy();
+  expect(endState['todolist2Id'][1].isDone).toBeFalsy();
+});
 
 
