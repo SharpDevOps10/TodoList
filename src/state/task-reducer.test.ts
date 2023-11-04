@@ -4,13 +4,13 @@ import {addTaskAC, removeTaskAC, taskReducer} from './task-reducer';
 test('correct task should be deleted from correct array', () => {
   const startState: TasksState = {
     'todolist1Id': [
-      { id: '1', title: "CSS", isDone: true },
-      { id: '2', title: "JS", isDone: true },
-      { id: '3', title: "React", isDone: false },
+      { id: '1', title: 'CSS', isDone: true },
+      { id: '2', title: 'JS', isDone: true },
+      { id: '3', title: 'React', isDone: false },
     ],
     'todolist2Id': [
-      { id: '1', title: "The Sorrows Of Werther", isDone: false },
-      { id: '2', title: "Milk", isDone: true },
+      { id: '1', title: 'The Sorrows Of Werther', isDone: false },
+      { id: '2', title: 'Milk', isDone: true },
     ],
   };
 
@@ -25,17 +25,17 @@ test('correct task should be deleted from correct array', () => {
 test('correct task should be added to correct array', () => {
   const startState: TasksState = {
     'todolist1Id': [
-      { id: '1', title: "CSS", isDone: true },
-      { id: '2', title: "JS", isDone: true },
-      { id: '3', title: "React", isDone: false },
+      { id: '1', title: 'CSS', isDone: true },
+      { id: '2', title: 'JS', isDone: true },
+      { id: '3', title: 'React', isDone: false },
     ],
     'todolist2Id': [
-      { id: '1', title: "The Sorrows Of Werther", isDone: false },
-      { id: '2', title: "Milk", isDone: true },
+      { id: '1', title: 'The Sorrows Of Werther', isDone: false },
+      { id: '2', title: 'Milk', isDone: true },
     ],
   };
 
-  const action = addTaskAC('juice');
+  const action = addTaskAC('juice', 'todolist2Id');
   const endState = taskReducer(startState, action);
 
   expect(endState['todolist1Id'].length).toBe(3);
