@@ -65,10 +65,18 @@ const actionHandlers = {
   'CHANGE TODOLIST FILTER': changeTodolistFilter,
 };
 
-export const todolistReducer = (state: Array<TodoListType>, action: ActionsType): Array<TodoListType> => {
+export let todoListId1 = v1();
+export let todoListId2 = v1();
+
+const initialState: Array<TodoListType> = [
+  { id: todoListId1, title: 'What to learn', filter: 'active' },
+  { id: todoListId2, title: 'What to buy', filter: 'completed' },
+];
+
+export const todolistReducer = (state: Array<TodoListType> = initialState, action: ActionsType): Array<TodoListType> => {
   const handler = actionHandlers[action.type];
   if (handler) return handler(state, action);
-  else throw new Error('No matching action type');
+  else return state;
 };
 
 export const removeTodolistAC = (todolistId: string): RemoveTodolistActionType => {
