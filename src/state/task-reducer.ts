@@ -1,6 +1,6 @@
 import { TasksState } from '../App';
 import { v1 } from 'uuid';
-import { AddTodolistActionType, RemoveTodolistActionType } from './todolists-reducer';
+import { AddTodolistActionType, RemoveTodolistActionType, todoListId1, todoListId2 } from './todolists-reducer';
 
 type RemoveTaskActionType = {
   type: 'REMOVE TASK';
@@ -32,7 +32,19 @@ type ActionsType = RemoveTaskActionType | AddTaskActionType |
   ChangeTaskStatusType | ChangeTaskTitleType |
   AddTodolistActionType | RemoveTodolistActionType;
 
-export const taskReducer = (state: TasksState, action: ActionsType): TasksState => {
+const initialState: TasksState = {
+  [todoListId1]: [
+    { id: v1(), title: 'CSS', isDone: true },
+    { id: v1(), title: 'JS', isDone: true },
+    { id: v1(), title: 'React', isDone: false },
+    { id: v1(), title: 'Node', isDone: true },
+    { id: v1(), title: 'GraphQL', isDone: false }],
+  [todoListId2]: [
+    { id: v1(), title: 'The Sorrows Of Werther', isDone: false },
+    { id: v1(), title: 'Milk', isDone: true }],
+};
+
+export const taskReducer = (state: TasksState = initialState, action: ActionsType): TasksState => {
   const stateCopy = { ...state };
 
   const actionReducers: Record<string, (action: ActionsType) => void> = {
@@ -70,7 +82,7 @@ export const taskReducer = (state: TasksState, action: ActionsType): TasksState 
   const actionHandler = actionReducers[action.type];
   if (actionHandler) actionHandler(action);
 
-  return stateCopy;
+  return state;
 };
 
 export const removeTaskAC = (taskId: string, todolistId: string): RemoveTaskActionType => {
