@@ -8,7 +8,8 @@ This is a simple 'task manager' where you can write your goals
  * You can switch the state of the checkbox 
  
 
-![image](https://user-images.githubusercontent.com/71943754/229722404-b642fc76-1045-4ab4-b001-2cf65c46caed.png)
+![image](https://github.com/SharpDevOps10/TodoList/assets/71943754/b51d4220-5b01-48a3-adf1-d700280a0576)
+
 
 * NEW FEATURE : you can add a `new list` (it`s independent) with your tasks
 
