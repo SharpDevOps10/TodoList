@@ -13,9 +13,11 @@ This is a simple 'task manager' where you can write your goals
 
 * NEW FEATURE : you can add a `new list` (it`s independent) with your tasks
 
-![image](https://user-images.githubusercontent.com/71943754/232310075-706a4431-dd7e-434e-a766-caa2b2309cbc.png)
+![image](https://github.com/SharpDevOps10/TodoList/assets/71943754/9f920f35-33e8-43e5-bd93-88af619d0f48)
+
 
 # Status of your tasks 
 You can see that your current states are highlighted. So for your comfort you can switch them and see the tasks you need
 
-![image](https://user-images.githubusercontent.com/71943754/229724767-609901c1-7973-4f0b-af2a-a305ab5cb955.png)
+![image](https://github.com/SharpDevOps10/TodoList/assets/71943754/9dcd2a87-0873-442a-ad7c-c8db1a1b7551)
+
