@@ -1,40 +1,39 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from "react";
-import {IconButton, TextField} from "@material-ui/core";
-import {Add} from "@material-ui/icons";
+import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
+import { IconButton, TextField } from '@material-ui/core';
+import { Add } from '@material-ui/icons';
 
 type AddItemFormPropsType = {
   addItem: (title: string) => void,
 };
 
-export function AddItemForm(props: AddItemFormPropsType) {
-  const [newTaskTitle, setNewTaskTitle] = useState("");
+export function AddItemForm (props: AddItemFormPropsType) {
+  const [newTaskTitle, setNewTaskTitle] = useState('');
   const [error, setError] = useState<string | null>(null);
 
   const addTask = () => {
-    if (newTaskTitle.trim() !== "") {
+    if (newTaskTitle.trim() !== '') {
       props.addItem(newTaskTitle.trim());
-      setNewTaskTitle("");
+      setNewTaskTitle('');
     } else {
-      setError("Title is required");
+      setError('Title is required');
     }
-
   };
 
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    let data = event.currentTarget.value
+    let data = event.currentTarget.value;
     setNewTaskTitle(data);
   };
   const onKeyPressHandler = (event: KeyboardEvent<HTMLInputElement>) => {
-    setError(null);
+    if (error !== null) setError(null);
     if (event.shiftKey && event.charCode === 13) {
       props.addItem(newTaskTitle);
-      setNewTaskTitle("");
+      setNewTaskTitle('');
     }
   };
   return <div>
     <TextField value={newTaskTitle}
                variant={'outlined'}
-               label={"Type value"}
+               label={'Type value'}
                onChange={onChangeHandler}
                onKeyPress={onKeyPressHandler}
                error={!!error}
@@ -43,5 +42,5 @@ export function AddItemForm(props: AddItemFormPropsType) {
     <IconButton onClick={addTask} color={'primary'}>
       <Add/>
     </IconButton>
-  </div>
+  </div>;
 }
