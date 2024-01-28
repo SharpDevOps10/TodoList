@@ -24,7 +24,7 @@ type PropsType = {
   changeTodoListTitle: (id: string, title: string) => void
 };
 
-export function Todolist (props: PropsType) {
+export const Todolist = React.memo ((props: PropsType) => {
   const onAllClickHandler = () => props.changeFilter('all', props.id);
   const onActiveClickHandler = () => props.changeFilter('active', props.id);
   const onCompletedClickHandler = () => props.changeFilter('completed', props.id);
@@ -40,6 +40,10 @@ export function Todolist (props: PropsType) {
     props.addTask(title, props.id);
   }, []);
 
+  let taskForTodoList = props.tasks;
+
+  if (props.filter === 'completed') taskForTodoList = props.tasks.filter((task) => task.isDone);
+  if (props.filter === 'active') taskForTodoList = props.tasks.filter((task) => !task.isDone);
 
   return <div>
     <h3><EditableSpan title={props.title} onChange={changeTodoListTitle}></EditableSpan>
@@ -84,6 +88,5 @@ export function Todolist (props: PropsType) {
       </Button>
     </div>
   </div>;
-
-}
+});
 
