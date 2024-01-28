@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import './App.css';
 import { TaskType, Todolist } from './ToDoList';
 import { v1 } from 'uuid';
@@ -19,50 +19,48 @@ export type TasksState = {
 
 function App () {
 
-  function removeTask (id: string, todoListId: string) {
+  const removeTask = (id: string, todoListId: string) => {
     let tasks = tasksObj[todoListId];
-    let filteredTasks = tasks.filter((task) => task.id !== id);
-    tasksObj[todoListId] = filteredTasks;
+    tasksObj[todoListId] = tasks.filter((task) => task.id !== id);
     setTasks({ ...tasksObj });
-  }
+  };
 
-  function addTask (title: string, todoListId: string) {
+  const addTask = (title: string, todoListId: string) => {
     let task = {
       id: v1(),
       title: title,
       isDone: false,
     };
     let tasks = tasksObj[todoListId];
-    let newTasks = [task, ...tasks];
-    tasksObj[todoListId] = newTasks;
+    tasksObj[todoListId] = [task, ...tasks];
     setTasks({ ...tasksObj });
-  }
+  };
 
-  function changeFilter (value: FilterValuesTypes, todoListId: string) {
+  const changeFilter = (value: FilterValuesTypes, todoListId: string) => {
     let todoList = todoLists.find((tl) => tl.id === todoListId);
     if (todoList) {
       todoList.filter = value;
       setTodoLists([...todoLists]);
     }
-  }
+  };
 
-  function changeStatus (taskID: string, isDone: boolean, todoListId: string) {
+  const changeStatus = (taskID: string, isDone: boolean, todoListId: string) => {
     let tasks = tasksObj[todoListId];
     let task = tasks.find((t) => t.id === taskID);
     if (task) {
       task.isDone = isDone;
       setTasks({ ...tasksObj });
     }
-  }
+  };
 
-  function changeTaskTitle (taskID: string, newTitle: string, todoListId: string) {
+  const changeTaskTitle = (taskID: string, newTitle: string, todoListId: string) => {
     let tasks = tasksObj[todoListId];
     let task = tasks.find((t) => t.id === taskID);
     if (task) {
       task.title = newTitle;
       setTasks({ ...tasksObj });
     }
-  }
+  };
 
   let todoListId1 = v1();
   let todoListId2 = v1();
@@ -99,7 +97,7 @@ function App () {
       { id: v1(), title: 'Milk', isDone: true }],
   });
 
-  function addTodoList (title: string) {
+  const addTodoList = useCallback ((title: string) => {
     const todoList: TodoListType = {
       id: v1(),
       filter: 'all',
@@ -110,7 +108,7 @@ function App () {
       ...tasksObj,
       [todoList.id]: [],
     });
-  }
+  }, []);
 
 
   return (
