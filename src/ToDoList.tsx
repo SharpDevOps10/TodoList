@@ -1,9 +1,10 @@
-import React, { ChangeEvent, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { FilterValuesTypes } from './App';
 import { AddItemForm } from './AddItemForm';
 import { EditableSpan } from './EditableSpan';
-import { Button, Checkbox, IconButton } from '@material-ui/core';
+import { Button, IconButton } from '@material-ui/core';
 import { Delete } from '@material-ui/icons';
+import { Task } from './Task';
 
 export type TaskType = {
   id: string,
@@ -57,26 +58,14 @@ export const Todolist = React.memo((props: PropsType) => {
     <AddItemForm addItem={ addTask }></AddItemForm>
     <div>
       {
-        props.tasks.map((param) => {
-          const onRemoveHandler = () => props.removeTask(param.id, props.id);
-          const onChangeStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
-            props.changeTaskStatus(param.id, e.currentTarget.checked, props.id);
-          };
-
-          const onChangeTitleHandler = (newValue: string) => {
-            props.changeTaskTitle(param.id, newValue, props.id);
-          };
-
-          return <div key={ param.id } className={ param.isDone ? 'is-done' : '' }>
-            <Checkbox
-              onChange={ onChangeStatusHandler }
-              checked={ param.isDone }/>
-            <EditableSpan title={ param.title } onChange={ onChangeTitleHandler }/>
-            <IconButton onClick={ onRemoveHandler }>
-              <Delete/>
-            </IconButton>
-          </div>;
-        })
+        props.tasks.map((task) => <Task
+          task={ task }
+          changeTaskStatus={ props.changeTaskStatus }
+          changeTaskTitle={ props.changeTaskTitle }
+          removeTask={ props.removeTask }
+          todolistId={ props.id }
+          key={ task.id }
+        />)
       }
     </div>
     <div>
@@ -92,3 +81,4 @@ export const Todolist = React.memo((props: PropsType) => {
     </div>
   </div>;
 });
+
