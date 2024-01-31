@@ -40,7 +40,9 @@ export const Todolist = React.memo((props: PropsType) => {
 
   const removeTodoListHandler = () => props.removeTodoList(props.id);
 
-  const changeTodoListTitle = (title: string) => props.changeTodoListTitle(props.id, title);
+  const changeTodoListTitle = useCallback((title: string) => {
+    props.changeTodoListTitle(props.id, title);
+  }, [props.changeTodoListTitle, props.id]);
 
   const addTask = useCallback((title: string) => {
     props.addTask(title, props.id);
@@ -90,4 +92,3 @@ export const Todolist = React.memo((props: PropsType) => {
     </div>
   </div>;
 });
-
