@@ -10,6 +10,7 @@ export type TaskType = {
   title: string,
   isDone: boolean,
 };
+
 type PropsType = {
   id: string,
   title: string,
@@ -21,16 +22,14 @@ type PropsType = {
   changeTaskTitle: (taskID: string, newTitle: string, todoListId: string) => void,
   filter: FilterValuesTypes,
   removeTodoList: (todoListId: string) => void,
-  changeTodoListTitle: (id: string, title: string) => void
+  changeTodoListTitle: (id: string, title: string) => void,
 };
 
 export const Todolist = React.memo ((props: PropsType) => {
   const onAllClickHandler = () => props.changeFilter('all', props.id);
   const onActiveClickHandler = () => props.changeFilter('active', props.id);
   const onCompletedClickHandler = () => props.changeFilter('completed', props.id);
-  const removeTodoListHandler = () => {
-    props.removeTodoList(props.id);
-  };
+  const removeTodoListHandler = () => props.removeTodoList(props.id);
 
   const changeTodoListTitle = (title: string) => {
     props.changeTodoListTitle(props.id, title);
@@ -38,12 +37,7 @@ export const Todolist = React.memo ((props: PropsType) => {
 
   const addTask = useCallback((title: string) => {
     props.addTask(title, props.id);
-  }, []);
-
-  let taskForTodoList = props.tasks;
-
-  if (props.filter === 'completed') taskForTodoList = props.tasks.filter((task) => task.isDone);
-  if (props.filter === 'active') taskForTodoList = props.tasks.filter((task) => !task.isDone);
+  }, [props.addTask, props.id]);
 
   return <div>
     <h3><EditableSpan title={props.title} onChange={changeTodoListTitle}></EditableSpan>
